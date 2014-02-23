@@ -1,0 +1,17 @@
+proj.android/
+proj.blackberry/
+proj.emscripten/
+proj.ios/
+proj.linux/
+proj.mac/
+proj.marmalade/
+proj.nacl/
+proj.tizen/
+proj.winrt/
+proj.wp8/
+
+temp/**
+*.bak
+*.swp
+*~.nib
+.DS_Store
