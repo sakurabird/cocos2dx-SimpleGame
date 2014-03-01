@@ -19,7 +19,8 @@ bool AppDelegate::applicationDidFinishLaunching() {
     pDirector->setOpenGLView(CCEGLView::sharedOpenGLView());
     
     CCSize screenSize = CCEGLView::sharedOpenGLView()->getFrameSize();
-    CCSize designSize = CCSizeMake(480, 320);
+//    CCSize designSize = CCSizeMake(480, 320);
+    CCSize designSize = CCSizeMake(720, 1080);//縦
     std::vector<std::string> searchPaths;
     
     if (screenSize.height > 320)
@@ -27,19 +28,25 @@ bool AppDelegate::applicationDidFinishLaunching() {
         searchPaths.push_back("hd");
         searchPaths.push_back("sd");
         pDirector->setContentScaleFactor(640.0f/designSize.height);
+//        pDirector->setContentScaleFactor(1.0f);
     }
     else
     {
         searchPaths.push_back("sd");
         pDirector->setContentScaleFactor(320.0f/designSize.height);
+//        pDirector->setContentScaleFactor(1.0f);
     }
-    
+
+
     CCFileUtils::sharedFileUtils()->setSearchPaths(searchPaths);
-    
+
+
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_WP8)
+    CCLOG("win!");
     CCEGLView::sharedOpenGLView()->setDesignResolutionSize(designSize.width, designSize.height, kResolutionShowAll);
 #else
-	CCEGLView::sharedOpenGLView()->setDesignResolutionSize(designSize.width, designSize.height, kResolutionNoBorder);
+//	CCEGLView::sharedOpenGLView()->setDesignResolutionSize(designSize.width, designSize.height, kResolutionNoBorder);
+	CCEGLView::sharedOpenGLView()->setDesignResolutionSize(designSize.width, designSize.height, kResolutionFixedWidth);//縦
 #endif
 
     // turn on display FPS
