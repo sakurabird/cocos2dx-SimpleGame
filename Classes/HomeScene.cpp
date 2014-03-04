@@ -46,7 +46,7 @@ bool HomeScene::init()
     CCLabelTTF* startLabel = CCLabelTTF::create("Start!", "Arial", 40.0);
     startLabel->setColor(ccc3(255,192,203));
     CCMenuItemLabel* startItem = CCMenuItemLabel::create(startLabel, this, menu_selector(HomeScene::tapStartButton));
-        startItem->setPosition(ccp(winSize.width * 0.5, winSize.height * 0.5));
+    startItem->setPosition(ccp(winSize.width * 0.5, winSize.height * 0.5));
 
     CCMenu* menu = CCMenu::create(startItem, NULL);
     menu->setPosition(CCPointZero);
@@ -73,6 +73,15 @@ bool HomeScene::init()
     CC_BREAK_IF(! pMenu);
     
     this->addChild(pMenu, 1);
+
+    CCLOG("visibleSize.width: %f, height: %f",visibleSize.width,visibleSize.height);
+    CCLOG("origin.x: %f, origin.y: %f",origin.x,origin.y);
+
+//    CCSprite *testImage = CCSprite::create("image360x540.png");
+//    CCSprite *testImage = CCSprite::create("image720x1080.png");
+//    testImage->setPosition(ccp(visibleSize.width/2, visibleSize.height/2));
+//    testImage->setPosition(ccp(origin.x, origin.y));
+//        this->addChild(testImage);
 
     bRet = true;
     } while (0);
