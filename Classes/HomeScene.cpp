@@ -41,35 +41,43 @@ bool HomeScene::init()
 	{
     CC_BREAK_IF(!CCLayerColor::initWithColor(ccc4(51, 120, 200, 255)));
 
-    CCSize winSize = CCDirector::sharedDirector()->getWinSize();
+        CCSize winSize = CCDirector::sharedDirector()->getWinSize();
 
-    CCLabelTTF* startLabel = CCLabelTTF::create("Start!", "Arial", 40.0);
-    startLabel->setColor(ccc3(255,192,203));
-    CCMenuItemLabel* startItem = CCMenuItemLabel::create(startLabel, this, menu_selector(HomeScene::tapStartButton));
-    startItem->setPosition(ccp(winSize.width * 0.5, winSize.height * 0.5));
+        CCLabelTTF* startLabel = CCLabelTTF::create("Start!", "Arial", 40.0);
+        startLabel->setColor(ccc3(255,192,203));
+        CCMenuItemLabel* startItem = CCMenuItemLabel::create(startLabel, this, menu_selector(HomeScene::tapStartButton));
+        startItem->setPosition(ccp(winSize.width * 0.5, winSize.height * 0.5));
 
-    CCMenu* menu = CCMenu::create(startItem, NULL);
-    menu->setPosition(CCPointZero);
-    this->addChild(menu);
+        CCMenu* menu = CCMenu::create(startItem, NULL);
+        menu->setPosition(CCPointZero);
+        this->addChild(menu);
 
-    // Create a "close" menu item with close icon, it's an auto release object.
-    CCMenuItemImage *pCloseItem = CCMenuItemImage::create(
-                                                          "CloseNormal.png",
-                                                          "CloseSelected.png",
-                                                          this,
-                                                          menu_selector(HomeScene::menuCloseCallback));
+        // Create a "close" menu item with close icon, it's an auto release object.
+//        CCMenuItemImage *pCloseItem = CCMenuItemImage::create(
+//                                                          "CloseNormal.png",
+//                                                          "CloseSelected.png",
+//                                                          this,
+//                                                          menu_selector(HomeScene::menuCloseCallback));
+        
+        CCSprite* closeNormal = CCSprite::createWithSpriteFrameName("CloseNormal.png");
+        CCSprite* closeSelected = CCSprite::createWithSpriteFrameName("CloseSelected.png");
+        CCMenuItemSprite *pCloseItem = CCMenuItemSprite::create(closeNormal,
+                                                                closeSelected,
+                                                                this,
+                                                                menu_selector(HomeScene::menuCloseCallback));
+
     CC_BREAK_IF(! pCloseItem);
 
-    // Place the menu item bottom-right conner.
-    CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
-    CCPoint origin = CCDirector::sharedDirector()->getVisibleOrigin();
+        // Place the menu item bottom-right conner.
+        CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
+        CCPoint origin = CCDirector::sharedDirector()->getVisibleOrigin();
 
-    pCloseItem->setPosition(ccp(origin.x + visibleSize.width - pCloseItem->getContentSize().width/2,
+        pCloseItem->setPosition(ccp(origin.x + visibleSize.width - pCloseItem->getContentSize().width/2,
                                 origin.y + pCloseItem->getContentSize().height/2));
 
-    // Create a menu with the "close" menu item, it's an auto release object.
-    CCMenu* pMenu = CCMenu::create(pCloseItem, NULL);
-    pMenu->setPosition(CCPointZero);
+        // Create a menu with the "close" menu item, it's an auto release object.
+        CCMenu* pMenu = CCMenu::create(pCloseItem, NULL);
+        pMenu->setPosition(CCPointZero);
     CC_BREAK_IF(! pMenu);
     
     this->addChild(pMenu, 1);

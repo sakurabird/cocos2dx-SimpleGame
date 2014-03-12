@@ -70,7 +70,9 @@ bool HelloWorld::init()
 
         //縦にしたため大きさ変更
 //		CCSprite *player = CCSprite::create("Player.png", CCRectMake(0, 0, 27, 40) );
-		CCSprite *player = CCSprite::create("Player.png", CCRectMake(0, 0, 95, 120) );
+//		CCSprite *player = CCSprite::create("Player.png", CCRectMake(0, 0, 95, 120) );
+
+        CCSprite* player = CCSprite::createWithSpriteFrameName("Player.png");//テクスチャアトラスを使用
         CCLOG("Hello player.width: %f, height: %f",player->getContentSize().width,player->getContentSize().height);
 
 		player->setPosition( ccp(origin.x + player->getContentSize().width/2,
@@ -102,7 +104,9 @@ void HelloWorld::addTarget()
 {
     //縦にしたため大きさ変更
 //	CCSprite *target = CCSprite::create("Target.png", CCRectMake(0,0,27,40) );
-	CCSprite *target = CCSprite::create("Target.png", CCRectMake(0,0,82,130) );
+//	CCSprite *target = CCSprite::create("Target.png", CCRectMake(0,0,82,130) );
+
+    CCSprite* target = CCSprite::createWithSpriteFrameName("Target.png");//テクスチャアトラスを使用
 
 	// Determine where to spawn the target along the Y axis
 	CCSize winSize = CCDirector::sharedDirector()->getVisibleSize();
@@ -145,6 +149,7 @@ void HelloWorld::spriteMoveFinished(CCNode* sender)
 
 	if (sprite->getTag() == 1)  // target
 	{
+        CocosDenshion::SimpleAudioEngine::sharedEngine()->end();
 		_targets->removeObject(sprite);
         
 		GameOverScene *gameOverScene = GameOverScene::create();
@@ -181,7 +186,10 @@ void HelloWorld::ccTouchesEnded(CCSet* touches, CCEvent* event)
     
     //縦にしたため大きさ変更
 //	CCSprite *projectile = CCSprite::create("Projectile.png", CCRectMake(0, 0, 20, 20));
-	CCSprite *projectile = CCSprite::create("Projectile.png", CCRectMake(0, 0, 80, 80));
+//	CCSprite *projectile = CCSprite::create("Projectile.png", CCRectMake(0, 0, 80, 80));
+
+    CCSprite* projectile = CCSprite::createWithSpriteFrameName("Projectile.png");//テクスチャアトラスを使用
+
 	projectile->setPosition( ccp(origin.x+20, origin.y+winSize.height/2) );
 
 	// Determinie offset of location to projectile

@@ -90,11 +90,20 @@ bool GameOverLayer::init()
 
 
 
-        CCMenuItemImage *pCloseItem = CCMenuItemImage::create(
-                                                              "CloseNormal.png",
-                                                              "CloseSelected.png",
-                                                              this,
-                                                              menu_selector(GameOverLayer::menuCloseCallback));
+//        CCMenuItemImage *pCloseItem = CCMenuItemImage::create(
+//                                                              "CloseNormal.png",
+//                                                              "CloseSelected.png",
+//                                                              this,
+//                                                              menu_selector(GameOverLayer::menuCloseCallback));
+
+
+        CCSprite* closeNormal = CCSprite::createWithSpriteFrameName("CloseNormal.png");
+        CCSprite* closeSelected = CCSprite::createWithSpriteFrameName("CloseSelected.png");
+        CCMenuItemSprite *pCloseItem = CCMenuItemSprite::create(closeNormal,
+                                                                closeSelected,
+                                                                this,
+                                                                menu_selector(GameOverLayer::menuCloseCallback));
+
         CC_BREAK_IF(! pCloseItem);
 
         // Place the menu item bottom-right conner.

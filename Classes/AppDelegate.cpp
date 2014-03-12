@@ -1,5 +1,6 @@
 #include "AppDelegate.h"
 #include "HomeScene.h"
+#include "SimpleAudioEngine.h"
 
 USING_NS_CC;
 
@@ -41,6 +42,11 @@ bool AppDelegate::applicationDidFinishLaunching() {
     CCFileUtils::sharedFileUtils()->setSearchPaths(searchPaths);
 
 
+    //テクスチャアトラスを使用する
+    CCSpriteFrameCache* frameCache = CCSpriteFrameCache::sharedSpriteFrameCache();
+    frameCache->addSpriteFramesWithFile("simpleGame.plist");
+
+
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_WP8)
     CCLOG("win!");
     CCEGLView::sharedOpenGLView()->setDesignResolutionSize(designSize.width, designSize.height, kResolutionShowAll);
@@ -71,7 +77,7 @@ void AppDelegate::applicationDidEnterBackground() {
     CCDirector::sharedDirector()->stopAnimation();
 
     // if you use SimpleAudioEngine, it must be pause
-    // CocosDenshion::SimpleAudioEngine::sharedEngine()->pauseBackgroundMusic();
+    CocosDenshion::SimpleAudioEngine::sharedEngine()->pauseBackgroundMusic();
 }
 
 // this function will be called when the app is active again
@@ -79,5 +85,5 @@ void AppDelegate::applicationWillEnterForeground() {
     CCDirector::sharedDirector()->startAnimation();
 
     // if you use SimpleAudioEngine, it must resume here
-    // CocosDenshion::SimpleAudioEngine::sharedEngine()->resumeBackgroundMusic();
+    CocosDenshion::SimpleAudioEngine::sharedEngine()->resumeBackgroundMusic();
 }
