@@ -1,6 +1,7 @@
 #include "AppDelegate.h"
 #include "HomeScene.h"
 #include "SimpleAudioEngine.h"
+#include "GHelper.h"
 
 USING_NS_CC;
 
@@ -65,6 +66,8 @@ bool AppDelegate::applicationDidFinishLaunching() {
 //    CCScene *pScene = HelloWorld::scene();
     CCScene *pScene = HomeScene::scene();
 
+    //椋梨さんの作られたGHelper
+    GHelper::init();
 
     // run
     pDirector->runWithScene(pScene);

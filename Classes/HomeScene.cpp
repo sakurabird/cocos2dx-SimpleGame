@@ -1,5 +1,6 @@
 #include "HomeScene.h"
 #include "HelloWorldScene.h"
+#include "GHelper.h"
 
 using namespace cocos2d;
 
@@ -39,7 +40,7 @@ bool HomeScene::init()
 	bool bRet = false;
 	do
 	{
-    CC_BREAK_IF(!CCLayerColor::initWithColor(ccc4(51, 120, 200, 255)));
+        CC_BREAK_IF(!CCLayerColor::initWithColor(ccc4(51, 120, 200, 255)));
 
         CCSize winSize = CCDirector::sharedDirector()->getWinSize();
 
@@ -66,7 +67,7 @@ bool HomeScene::init()
                                                                 this,
                                                                 menu_selector(HomeScene::menuCloseCallback));
 
-    CC_BREAK_IF(! pCloseItem);
+        CC_BREAK_IF(! pCloseItem);
 
         // Place the menu item bottom-right conner.
         CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
@@ -78,12 +79,13 @@ bool HomeScene::init()
         // Create a menu with the "close" menu item, it's an auto release object.
         CCMenu* pMenu = CCMenu::create(pCloseItem, NULL);
         pMenu->setPosition(CCPointZero);
-    CC_BREAK_IF(! pMenu);
-    
-    this->addChild(pMenu, 1);
 
-    CCLOG("visibleSize.width: %f, height: %f",visibleSize.width,visibleSize.height);
-    CCLOG("origin.x: %f, origin.y: %f",origin.x,origin.y);
+        CC_BREAK_IF(! pMenu);
+    
+        this->addChild(pMenu, 1);
+
+        CCLOG("visibleSize.width: %f, height: %f",visibleSize.width,visibleSize.height);
+        CCLOG("origin.x: %f, origin.y: %f",origin.x,origin.y);
 
 //    CCSprite *testImage = CCSprite::create("image360x540.png");
 //    CCSprite *testImage = CCSprite::create("image720x1080.png");
@@ -91,7 +93,32 @@ bool HomeScene::init()
 //    testImage->setPosition(ccp(origin.x, origin.y));
 //        this->addChild(testImage);
 
-    bRet = true;
+        CCSprite *imageLeftBottom = GHelper::createGSprite720_1280(0, 0, "Player.png");
+        CC_BREAK_IF(! imageLeftBottom);
+        imageLeftBottom->setPosition(ccp(imageLeftBottom->getContentSize().width / 2, imageLeftBottom->getContentSize().height /2));
+        this->addChild(imageLeftBottom);
+
+        CCSprite *imageRightTop = GHelper::createGSprite720_1280(0, 0, "Player.png");
+        CC_BREAK_IF(! imageRightTop);
+        imageRightTop->setPosition(ccp(winSize.width - imageRightTop->getContentSize().width / 2, winSize.height - imageRightTop->getContentSize().height / 2));
+        this->addChild(imageRightTop);
+
+        CCSprite *imageLeftTop = GHelper::createGSprite720_1280(0, 0, "Player.png");
+        CC_BREAK_IF(! imageLeftTop);
+        imageLeftTop->setPosition(ccp(imageLeftTop->getContentSize().width / 2, winSize.height - imageLeftTop->getContentSize().height / 2));
+        this->addChild(imageLeftTop);
+
+        CCSprite *imageRightBottom = GHelper::createGSprite720_1280(0, 0, "Player.png");
+        CC_BREAK_IF(! imageRightBottom);
+        imageRightBottom->setPosition(ccp(winSize.width - imageRightBottom->getContentSize().width / 2, imageRightBottom->getContentSize().height / 2));
+        this->addChild(imageRightBottom);
+
+        CCSprite *imageCenter = GHelper::createGSprite720_1280(0, 0, "Player.png");
+        CC_BREAK_IF(! imageCenter);
+        imageCenter->setPosition(ccp(winSize.width / 2, winSize.height / 2));
+        this->addChild(imageCenter);
+
+        bRet = true;
     } while (0);
 
     return bRet;
